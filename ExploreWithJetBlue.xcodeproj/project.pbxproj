@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA5D94BB1FD2789D00633832 /* DIN Medium.ttf in Sources */ = {isa = PBXBuildFile; fileRef = DA87CC301FD263680011FBCD /* DIN Medium.ttf */; };
+		DA5D94BC1FD278F800633832 /* DIN Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA87CC301FD263680011FBCD /* DIN Medium.ttf */; };
+		DA5D94C21FD2A44700633832 /* FlightChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5D94C11FD2A44700633832 /* FlightChooser.m */; };
 		DA87CBFF1FD260F70011FBCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA87CBFE1FD260F70011FBCD /* AppDelegate.m */; };
 		DA87CC021FD260F70011FBCD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA87CC011FD260F70011FBCD /* ViewController.m */; };
 		DA87CC051FD260F70011FBCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA87CC031FD260F70011FBCD /* Main.storyboard */; };
@@ -35,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA5D94C01FD2A44700633832 /* FlightChooser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlightChooser.h; sourceTree = "<group>"; };
+		DA5D94C11FD2A44700633832 /* FlightChooser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlightChooser.m; sourceTree = "<group>"; };
 		DA87CBFA1FD260F70011FBCD /* ExploreWithJetBlue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExploreWithJetBlue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA87CBFD1FD260F70011FBCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA87CBFE1FD260F70011FBCD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 		DA87CC1D1FD260F70011FBCD /* ExploreWithJetBlueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExploreWithJetBlueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA87CC211FD260F70011FBCD /* ExploreWithJetBlueUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreWithJetBlueUITests.m; sourceTree = "<group>"; };
 		DA87CC231FD260F80011FBCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA87CC301FD263680011FBCD /* DIN Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +111,14 @@
 				DA87CBFE1FD260F70011FBCD /* AppDelegate.m */,
 				DA87CC001FD260F70011FBCD /* ViewController.h */,
 				DA87CC011FD260F70011FBCD /* ViewController.m */,
+				DA5D94C01FD2A44700633832 /* FlightChooser.h */,
+				DA5D94C11FD2A44700633832 /* FlightChooser.m */,
 				DA87CC031FD260F70011FBCD /* Main.storyboard */,
 				DA87CC061FD260F70011FBCD /* Assets.xcassets */,
 				DA87CC081FD260F70011FBCD /* LaunchScreen.storyboard */,
 				DA87CC0B1FD260F70011FBCD /* Info.plist */,
 				DA87CC0C1FD260F70011FBCD /* main.m */,
+				DA87CC301FD263680011FBCD /* DIN Medium.ttf */,
 			);
 			path = ExploreWithJetBlue;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA5D94BC1FD278F800633832 /* DIN Medium.ttf in Resources */,
 				DA87CC0A1FD260F70011FBCD /* LaunchScreen.storyboard in Resources */,
 				DA87CC071FD260F70011FBCD /* Assets.xcassets in Resources */,
 				DA87CC051FD260F70011FBCD /* Main.storyboard in Resources */,
@@ -265,6 +275,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA5D94C21FD2A44700633832 /* FlightChooser.m in Sources */,
+				DA5D94BB1FD2789D00633832 /* DIN Medium.ttf in Sources */,
 				DA87CC021FD260F70011FBCD /* ViewController.m in Sources */,
 				DA87CC0D1FD260F70011FBCD /* main.m in Sources */,
 				DA87CBFF1FD260F70011FBCD /* AppDelegate.m in Sources */,
