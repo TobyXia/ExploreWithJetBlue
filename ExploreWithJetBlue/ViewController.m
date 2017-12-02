@@ -257,7 +257,7 @@ NSMutableArray *landmarksLocations;
 }
 -(void)fullChooseLoad{
     if (fullchoose){
-        if (chooseButton.frame.size.height < screenHeight-1){
+        if (chooseButton.frame.size.height < screenHeight*1.1){
 
             chooseButton.frame = CGRectMake(0, 0, chooseButton.frame.size.width, chooseButton.frame.size.height+16);
             
@@ -266,7 +266,7 @@ NSMutableArray *landmarksLocations;
             chooseM++;
             
             
-            cameraButton.center = CGPointMake(cameraButton.center.x, (screenHeight/2-screenHeight/4)-8*chooseM);
+            cameraButton.center = CGPointMake(cameraButton.center.x, (screenHeight/2-screenHeight/4)-14*chooseM);
          
         }
         else{

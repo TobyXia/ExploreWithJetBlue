@@ -445,6 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37LM8A7NV7;
 				INFOPLIST_FILE = ExploreWithJetBlue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.YHACK17.ExploreWithJetBlue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -459,6 +460,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37LM8A7NV7;
 				INFOPLIST_FILE = ExploreWithJetBlue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.YHACK17.ExploreWithJetBlue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
