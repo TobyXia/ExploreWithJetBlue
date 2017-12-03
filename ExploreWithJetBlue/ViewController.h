@@ -12,6 +12,9 @@
     IBOutlet UIButton * chooseButton;
     IBOutlet UIButton * cameraButton;
     
+    NSTimer * coreGraphics; 
+    
+    IBOutlet UIImageView * plane; 
 }
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 

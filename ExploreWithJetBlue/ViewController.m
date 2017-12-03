@@ -27,7 +27,9 @@ chooseM = 1;
     UIImage *pickedImage = info[UIImagePickerControllerOriginalImage];
     //self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 
-    [self.spinner startAnimating];
+    //[self.spinner startAnimating];
+    [chooseButton setTitle:@"processing image" forState:UIControlStateNormal];
+    [cameraButton setTitle:@"processing image" forState:UIControlStateNormal];
     
     // Base64 encode the image and create the request
     NSString *binaryImageData = [self base64EncodeImage:pickedImage];
@@ -59,13 +61,16 @@ chooseM = 1;
         imagedata = UIImagePNGRepresentation(image);
     }
     
+    [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(image) forKey:@"imager"];
     NSString *base64String = [imagedata base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+   
+    
     return base64String;
 }
 
 - (void) createRequest: (NSString*)imageData {
     // Create our request URL
-    
+    loading = YES;
     NSString *urlString = @"https://vision.googleapis.com/v1/images:annotate?key=";
     NSString *API_KEY = @"AIzaSyCXsC4aikaOA5a6J2YhQ2YtkFbTg1zh26I";
     
@@ -111,7 +116,8 @@ chooseM = 1;
 
 NSMutableArray *labels;
 NSMutableArray *landmarks;
-NSMutableArray *landmarksLocations;
+NSMutableArray *landmarksLocationsLat;
+NSMutableArray *landmarksLocationsLong;
 - (void)analyzeResults: (NSData*)dataToParse {
     
     // Update UI on the main thread
@@ -126,6 +132,8 @@ NSMutableArray *landmarksLocations;
         NSDictionary *errorObj = [json objectForKey:@"error"];
         
         [self.spinner stopAnimating];
+        loading = NO;
+        
       
         
         // Check for errors
@@ -177,18 +185,43 @@ NSMutableArray *landmarksLocations;
             //LANDMARK
             NSDictionary *landmarkAnnotations = [responseData objectForKey:@"landmarkAnnotations"];
             NSInteger numLandmarks = [landmarkAnnotations count];
+            
             landmarks = [[NSMutableArray alloc] init];
-            landmarksLocations = [[NSMutableArray alloc] init];
+            landmarksLocationsLat = [[NSMutableArray alloc] init];
+            landmarksLocationsLong = [[NSMutableArray alloc] init];
             
             if (numLandmarks > 0) {
-                NSString *labelResultsText = @"Landmarks found: ";
-           
+                NSString * labelResultsText = @"Landmarks found: ";
+                
+                NSArray * testLatArray = [responseData valueForKeyPath:@"landmarkAnnotations.locations.latLng.latitude"];
+                NSArray * testLongArray = [responseData valueForKeyPath:@"landmarkAnnotations.locations.latLng.longitude"];
+                
+                
+                
+                ///////////////////
+                NSString * latString = [testLatArray componentsJoinedByString: @""];
+                NSString * longString = [testLongArray componentsJoinedByString: @""];
+                
+                NSString *latStringFinal = [latString substringWithRange:NSMakeRange(7, 8)];
+                NSString *longStringFinal = [longString substringWithRange:NSMakeRange(7, 8)];
+                
+                
+                //NSString * testLat = [NSString stringWithFormat:@"%f", realLat];
+                //NSString * testLong = [NSString stringWithFormat:@"%f",realLong];
+                ///////////////////
+                
                 for (NSDictionary *landmark in landmarkAnnotations) {
-                    NSLog(@"LANDMARK FOUND");
+                    
                     NSString *landmarkString = [landmark objectForKey:@"description"];
-                    NSString *landmarkLocation = [landmark objectForKey:@"locations"];
+                    NSLog(@"LANDMARK FOUND");
+                    /*
+                    
+                    NSString *landmarkLocation = [landmark objectForKey:@"locations.latLng.latitude"];
+                    NSLog(@"%@",landmarkLocation);
+                    */
                     [landmarks addObject:landmarkString];
-                    [landmarksLocations addObject:landmarkLocation];
+                    [landmarksLocationsLat addObject:latStringFinal];
+                    [landmarksLocationsLong addObject:longStringFinal];
                 }
                 
                 
@@ -225,19 +258,34 @@ NSMutableArray *landmarksLocations;
                 NSString * landmarkLat = @"-1";
                 if ([landmarks count] > 0){
                     landmarkName = [landmarks objectAtIndex:0];
+                    ///GET Long and Lat
+                    /*
                     NSString * landmarkLocation = [landmarksLocations objectAtIndex:0];
                     NSLog(@"%@",landmarkLocation);
-                    landmarkLong;
-                    landmarkLat;
+                    for (int i = 0; i < [landmarkLocation length]; i ++){
+                        unichar * single = [landmarkLocation characterAtIndex:i];
+                        
+                        if ([single isEqualToString:@"\"%@\""]){
+                            
+                        }
+                        
+                    }
+                     */
+                    
+                    landmarkLong = [landmarksLocationsLong objectAtIndex:0];
+                    landmarkLat = [landmarksLocationsLat objectAtIndex:0];
                 }
                 
                 [[NSUserDefaults standardUserDefaults] setObject:landmarkName forKey:@"landmarkName"];
                 [[NSUserDefaults standardUserDefaults] setObject:landmarkLong forKey:@"landmarkLong"];
                 [[NSUserDefaults standardUserDefaults] setObject:landmarkLat forKey:@"landmarkLat"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+               
                 
                 [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:labels] forKey:@"labels"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
 
+                [coreGraphics invalidate];
+                coreGraphics = nil;
                 
                 NSString * storyboardName = @"Main";
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
@@ -254,6 +302,56 @@ NSMutableArray *landmarksLocations;
 -(void)corehelper{
     [self fullChooseLoad];
     [self fullCoverPhoto];
+    [self flyLoader];
+}
+-(void)flyLoader{
+    if (loading){
+        plane.hidden = NO;
+        plane.center = CGPointMake(plane.center.x+planeX*1.25,plane.center.y+planeY*1.25);
+        
+        if (plane.center.x < -100 || plane.center.x > screenWidth+100 || plane.center.y < -100 || plane.center.y > screenHeight + 100){
+            int direction = arc4random()%4;
+            if (direction == 0){
+                planeX = 0;
+                planeY = 1;
+                UIImage *image = [UIImage imageNamed: @"plane down.png"];
+                [plane setImage:image];
+                
+                plane.center = CGPointMake(arc4random()%350, -100);
+            }
+            if (direction == 1){
+                planeX = 0;
+                planeY = -1;
+                UIImage *image = [UIImage imageNamed: @"plane up.png"];
+                [plane setImage:image];
+                
+                plane.center = CGPointMake(arc4random()%350, screenHeight+100);
+            }
+            if (direction == 2){
+                planeX = 1;
+                planeY = 0;
+                UIImage *image = [UIImage imageNamed: @"plane right.png"];
+                [plane setImage:image];
+                
+                plane.center = CGPointMake(-100, arc4random()%700);
+            }
+            if (direction == 3){
+                planeX = -1;
+                planeY = 0;
+                UIImage *image = [UIImage imageNamed: @"plane left.png"];
+                [plane setImage:image];
+                
+                plane.center = CGPointMake(screenWidth+100, arc4random()%700);
+            }
+        }
+        
+    }else{
+        plane.hidden = YES;
+    }
+    
+    
+    
+    
 }
 -(void)fullChooseLoad{
     if (fullchoose){
@@ -270,6 +368,9 @@ NSMutableArray *landmarksLocations;
          
         }
         else{
+            chooseButton.enabled = NO;
+            cameraButton.enabled = NO;
+            
             fullchoose = NO;
             UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             imagePicker.delegate = self;
@@ -298,6 +399,9 @@ NSMutableArray *landmarksLocations;
         }
         else{
             fullphoto = NO;
+            chooseButton.enabled = NO;
+            cameraButton.enabled = NO;
+            
             
             UIImagePickerController *picker = [[UIImagePickerController alloc] init];
             picker.delegate = self;
@@ -315,13 +419,25 @@ NSMutableArray *landmarksLocations;
     chooseButton.center = CGPointMake(screenWidth/2, screenHeight/2+screenHeight/4);
     cameraButton.center = CGPointMake(screenWidth/2, screenHeight/2-screenHeight/4);
     _spinner.center = CGPointMake(screenWidth/2, screenHeight/2);
+    _spinner.hidden = YES;
+    
+    [chooseButton setTitle:@"Choose a Photo" forState:UIControlStateNormal];
+    [cameraButton setTitle:@"Take a Photo" forState:UIControlStateNormal];
+    
+    chooseButton.enabled = YES;
+    cameraButton.enabled = YES;
+    
 }
 bool fullchoose;
 bool fullphoto;
 
 CGFloat screenWidth;
 CGFloat screenHeight;
+bool loading;
+float planeX;
+float planeY;
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -336,11 +452,16 @@ CGFloat screenHeight;
     fullphoto = NO;
     [self animationsReset];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.005
+    coreGraphics = [NSTimer scheduledTimerWithTimeInterval:0.005
                                      target:self
                                    selector:@selector(corehelper)
                                    userInfo:nil
                                     repeats:YES];
+    
+    loading = NO;
+    plane.hidden = YES;
+    int r = arc4random_uniform(screenWidth);
+    plane.center = CGPointMake(r, screenHeight*2);
     
     
 }

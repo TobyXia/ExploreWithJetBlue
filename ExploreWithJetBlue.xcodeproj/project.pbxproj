@@ -10,6 +10,12 @@
 		DA5D94BB1FD2789D00633832 /* DIN Medium.ttf in Sources */ = {isa = PBXBuildFile; fileRef = DA87CC301FD263680011FBCD /* DIN Medium.ttf */; };
 		DA5D94BC1FD278F800633832 /* DIN Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA87CC301FD263680011FBCD /* DIN Medium.ttf */; };
 		DA5D94C21FD2A44700633832 /* FlightChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5D94C11FD2A44700633832 /* FlightChooser.m */; };
+		DA5D94C71FD349D700633832 /* resetimage.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5D94C61FD349D600633832 /* resetimage.png */; };
+		DA5D94C91FD3D60D00633832 /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5D94C81FD3D60D00633832 /* plane.png */; };
+		DA5D94CE1FD3D99C00633832 /* plane right.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5D94CA1FD3D99C00633832 /* plane right.png */; };
+		DA5D94CF1FD3D99C00633832 /* plane down.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5D94CB1FD3D99C00633832 /* plane down.png */; };
+		DA5D94D01FD3D99C00633832 /* plane up.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5D94CC1FD3D99C00633832 /* plane up.png */; };
+		DA5D94D11FD3D99C00633832 /* plane left.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5D94CD1FD3D99C00633832 /* plane left.png */; };
 		DA87CBFF1FD260F70011FBCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA87CBFE1FD260F70011FBCD /* AppDelegate.m */; };
 		DA87CC021FD260F70011FBCD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA87CC011FD260F70011FBCD /* ViewController.m */; };
 		DA87CC051FD260F70011FBCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA87CC031FD260F70011FBCD /* Main.storyboard */; };
@@ -40,6 +46,12 @@
 /* Begin PBXFileReference section */
 		DA5D94C01FD2A44700633832 /* FlightChooser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlightChooser.h; sourceTree = "<group>"; };
 		DA5D94C11FD2A44700633832 /* FlightChooser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlightChooser.m; sourceTree = "<group>"; };
+		DA5D94C61FD349D600633832 /* resetimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetimage.png; sourceTree = "<group>"; };
+		DA5D94C81FD3D60D00633832 /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
+		DA5D94CA1FD3D99C00633832 /* plane right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane right.png"; sourceTree = "<group>"; };
+		DA5D94CB1FD3D99C00633832 /* plane down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane down.png"; sourceTree = "<group>"; };
+		DA5D94CC1FD3D99C00633832 /* plane up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane up.png"; sourceTree = "<group>"; };
+		DA5D94CD1FD3D99C00633832 /* plane left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane left.png"; sourceTree = "<group>"; };
 		DA87CBFA1FD260F70011FBCD /* ExploreWithJetBlue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExploreWithJetBlue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA87CBFD1FD260F70011FBCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA87CBFE1FD260F70011FBCD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -118,7 +130,13 @@
 				DA87CC081FD260F70011FBCD /* LaunchScreen.storyboard */,
 				DA87CC0B1FD260F70011FBCD /* Info.plist */,
 				DA87CC0C1FD260F70011FBCD /* main.m */,
+				DA5D94C81FD3D60D00633832 /* plane.png */,
+				DA5D94CB1FD3D99C00633832 /* plane down.png */,
+				DA5D94CD1FD3D99C00633832 /* plane left.png */,
+				DA5D94CA1FD3D99C00633832 /* plane right.png */,
+				DA5D94CC1FD3D99C00633832 /* plane up.png */,
 				DA87CC301FD263680011FBCD /* DIN Medium.ttf */,
+				DA5D94C61FD349D600633832 /* resetimage.png */,
 			);
 			path = ExploreWithJetBlue;
 			sourceTree = "<group>";
@@ -249,7 +267,12 @@
 			files = (
 				DA5D94BC1FD278F800633832 /* DIN Medium.ttf in Resources */,
 				DA87CC0A1FD260F70011FBCD /* LaunchScreen.storyboard in Resources */,
+				DA5D94C91FD3D60D00633832 /* plane.png in Resources */,
+				DA5D94D11FD3D99C00633832 /* plane left.png in Resources */,
 				DA87CC071FD260F70011FBCD /* Assets.xcassets in Resources */,
+				DA5D94D01FD3D99C00633832 /* plane up.png in Resources */,
+				DA5D94CE1FD3D99C00633832 /* plane right.png in Resources */,
+				DA5D94CF1FD3D99C00633832 /* plane down.png in Resources */,
 				DA87CC051FD260F70011FBCD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA5D94C71FD349D700633832 /* resetimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

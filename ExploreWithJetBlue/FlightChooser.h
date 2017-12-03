@@ -15,6 +15,28 @@
     
     NSString * departureDate;
     NSMutableArray * keywordsArray;
+    
+    IBOutlet UIImageView * originalImage;
+    IBOutlet UILabel * originalLandmark;
+    
+    IBOutlet UIButton * dest1;
+    IBOutlet UIButton * dest2;
+    IBOutlet UIButton * dest3;
+    IBOutlet UIButton * dest4;
+    
+    IBOutlet UIButton * restart;
+    
+    ///InformationView
+    IBOutlet UILabel * destinationName;
+    IBOutlet UILabel * destinationAirport;
+    IBOutlet UILabel * price;
+    IBOutlet UITextView * description;
+    IBOutlet UILabel * flightTime; 
+    IBOutlet UIButton * bookNow;
+    IBOutlet UIButton * blueSkyLoad;
+    IBOutlet UILabel * loadingMessage; 
+    
+    NSTimer * coreGraphics0; 
 }
 
 
